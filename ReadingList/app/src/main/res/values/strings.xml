@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Reading List</string>
+    <string name="save">save</string>
+    <string name="delete">delete</string>
+    <string name="delete_book_title">Are you sure you want to delete this book?</string>
+</resources>
