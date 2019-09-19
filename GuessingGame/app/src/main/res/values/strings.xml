@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">Guessing Game</string>
-    <string name="guessing_title">Slide the bar to and get as close as you can to %d</string>
-    <string name="score">Score: %d</string>
-    <string name="thats_my_final_answer">That\'s my final answer</string>
-    <string name="high_score">High Score: %d</string>
-</resources>
