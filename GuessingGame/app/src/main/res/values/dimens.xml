@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="seekbar_margin_horizontal">50dp</dimen>
+    <dimen name="seekbar_margin_vertical">20dp</dimen>
+    <dimen name="score_padding">16dp</dimen>
+</resources>

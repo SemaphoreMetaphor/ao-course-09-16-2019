@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Bullseye</string>
+    <string name="title">Try to slide the bar to %d</string>
+    <string name="thats_my_final_answer">That\'s my final answer</string>
+    <string name="score_text">Score: %d</string>
+    <string name="high_score_text">High score: %d</string>
+</resources>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TODO</string>
+    <string name="add_todo">Add Todo</string>
+    <string name="todo_hint">Pick up kids from soccer practice</string>
+    <string name="dialog_todo_title" type="id">Would you like to mark item as done?</string>
+    <string name="dialog_todo_cancel">Cancel</string>
+    <string name="dialog_todo_ok">OK</string>
+</resources>

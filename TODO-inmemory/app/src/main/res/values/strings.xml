@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Todo-v2</string>
+    <string name="add_todo_button_text">Add Todo</string>
+    <string name="todo_edit_text_hint">Pick up the kids from soccer</string>
+    <string name="dialog_todo_title">Would you like to complete item?</string>
+    <string name="dialog_todo_negative">Cancel</string>
+    <string name="dialog_todo_positive">OK</string>
+</resources>
