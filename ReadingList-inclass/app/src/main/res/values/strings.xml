@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ReadingList-v2</string>
+    <string name="title_text">Title</string>
+    <string name="author_text">Author</string>
+    <string name="year_text">Year</string>
+    <string name="menu_save_book">Save</string>
+</resources>
