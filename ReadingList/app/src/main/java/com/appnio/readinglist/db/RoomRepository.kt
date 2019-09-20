@@ -17,7 +17,7 @@ class RoomRepository(private val database: BookDatabase) : Repository,
         }
     }
 
-    override fun insertAll(vararg books: Book) {
+    override fun insertAll(books: List<Book>) {
         launch {
             database.bookDao().insertAll(books)
             notifyListeners()

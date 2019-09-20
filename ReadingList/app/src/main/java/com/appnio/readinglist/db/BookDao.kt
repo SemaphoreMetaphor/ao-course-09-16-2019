@@ -9,7 +9,7 @@ interface BookDao {
     suspend fun insert(book: Book)
 
     @Insert
-    suspend fun insertAll(books: Array<out Book>)
+    suspend fun insertAll(books: List<Book>)
 
     @Query("SELECT * from book WHERE id LIKE :id LIMIT 1")
     suspend fun find(id: Int): Book
