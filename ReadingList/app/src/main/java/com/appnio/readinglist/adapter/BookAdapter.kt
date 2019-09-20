@@ -11,6 +11,11 @@ import com.appnio.readinglist.db.Book
 
 class BookAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    companion object {
+        const val HEADER_TYPE = 0
+        const val BOOK_TYPE = 1
+    }
+
     var books: List<Book> = arrayListOf()
     var listener: ClickListener? = null
 
@@ -19,25 +24,41 @@ class BookAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return when (position) {
+            0 -> HEADER_TYPE
+            else -> BOOK_TYPE
+        }
+    }
+
     fun setOnItemClickListener(listener: ClickListener) {
         this.listener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return BookItemViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.item_book,
-                parent,
-                false
+        return when (viewType) {
+            HEADER_TYPE -> HeaderItemViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.item_header,
+                    parent,
+                    false
+                )
             )
-        )
+            else -> BookItemViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.item_book,
+                    parent,
+                    false
+                )
+            )
+        }
     }
 
-    override fun getItemCount() = books.size
+    override fun getItemCount() = books.size + 1
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is BookItemViewHolder -> holder.bind(books[position], listener)
+            is BookItemViewHolder -> holder.bind(books[position - 1], listener)
         }
     }
 
