@@ -11,10 +11,16 @@ import com.appnio.readinglist_v2.db.Book
 
 class BookAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var items: List<Book> = arrayListOf()
+    private var items: List<Book> = arrayListOf()
+    private var clickListener: ((Book) -> Unit)? = null
 
     fun setBooks(books: List<Book>) {
         items = books
+        notifyDataSetChanged()
+    }
+
+    fun setOnItemClickListener(listener: (Book) -> Unit) {
+        clickListener = listener
         notifyDataSetChanged()
     }
 
@@ -32,7 +38,7 @@ class BookAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is BookItemViewHolder -> holder.bind(items[position])
+            is BookItemViewHolder -> holder.bind(items[position], clickListener)
         }
     }
 
@@ -42,10 +48,11 @@ class BookAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private val author: TextView = parent.findViewById(R.id.item_book_author)
         private val year: TextView = parent.findViewById(R.id.item_book_year)
 
-        fun bind(book: Book) {
+        fun bind(book: Book, clickListener: ((Book) -> Unit)?) {
             title.text = book.title
             author.text = book.author
             year.text = book.year
+            parent.setOnClickListener { clickListener?.invoke(book) }
         }
     }
 }

@@ -27,6 +27,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if (sharedPreferenceService.isFirstLoad()) {
+            sharedPreferenceService.setIsFirstLoad(false)
             (application as ReadingApplication).repository.insertAll(InitialData.data)
         }
         timerJob = MainScope().launch {

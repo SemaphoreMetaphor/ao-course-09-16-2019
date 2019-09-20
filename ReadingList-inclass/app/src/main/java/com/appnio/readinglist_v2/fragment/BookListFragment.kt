@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.appnio.readinglist_v2.R
 import com.appnio.readinglist_v2.ReadingApplication
 import com.appnio.readinglist_v2.adapter.BookAdapter
+import com.appnio.readinglist_v2.db.Book
 import com.appnio.readinglist_v2.extension.replaceFragment
 import kotlinx.android.synthetic.main.fragment_book_list.*
 
@@ -36,7 +37,7 @@ class BookListFragment : Fragment() {
             adapter = this@BookListFragment.adapter
         }
         addBookButton.setOnClickListener {
-            replaceFragment(EditBookFragment.newInstance(), true)
+            replaceFragment()
         }
         setBookData()
         activity?.let {
@@ -46,6 +47,13 @@ class BookListFragment : Fragment() {
                     setBookData()
                 }
         }
+        adapter.setOnItemClickListener {
+            replaceFragment(it)
+        }
+    }
+
+    private fun replaceFragment(book: Book? = null) {
+        replaceFragment(EditBookFragment.newInstance(book), true)
     }
 
     fun setBookData() {

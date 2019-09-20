@@ -18,7 +18,8 @@
         <EditText
             android:id="@+id/editTitle"
             android:layout_width="@dimen/edit_text_width"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords"/>
 
     </TableRow>
 
@@ -35,6 +36,7 @@
         <EditText
             android:id="@+id/editAuthor"
             android:layout_width="@dimen/edit_text_width"
+            android:inputType="textCapWords"
             android:layout_height="wrap_content"/>
 
     </TableRow>
@@ -52,6 +54,8 @@
         <EditText
             android:id="@+id/editYear"
             android:layout_width="@dimen/edit_text_width"
+            android:inputType="date"
+            android:maxLength="4"
             android:layout_height="wrap_content"/>
 
     </TableRow>

@@ -17,10 +17,16 @@ class MainActivity : AppCompatActivity() {
     fun replaceFragment(fragment: Fragment, addToBackStack: Boolean) {
         val fragmentTransaction = supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragment_container, fragment)
+
         if (addToBackStack) {
+            fragmentTransaction.setCustomAnimations(
+                R.anim.slide_in_left,
+                R.anim.slide_out_right,
+                R.anim.slide_in_right,
+                R.anim.slide_out_left
+            )
             fragmentTransaction.addToBackStack(null)
         }
-        fragmentTransaction.commit()
+        fragmentTransaction.replace(R.id.fragment_container, fragment).commit()
     }
 }

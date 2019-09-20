@@ -4,4 +4,7 @@
     <string name="author_text">Author</string>
     <string name="year_text">Year</string>
     <string name="menu_save_book">Save</string>
+    <string name="menu_delete_book">delete</string>
+    <string name="delete_book_dialog_title">Are you sure you want to delete this book?</string>
+    <string name="splash_text">Reading List</string>
 </resources>
