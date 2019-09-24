@@ -10,15 +10,20 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.appnio.todo.R
 import com.appnio.todo.adapter.TodoAdapter
-import com.appnio.todo.db.DataCallback
 import com.appnio.todo.db.RepositoryListener
 import com.appnio.todo.db.Todo
 import com.appnio.todo.extension.addFragment
 import com.appnio.todo.extension.getRepository
 import kotlinx.android.synthetic.main.fragment_todo_list.*
+import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 
 
-class TodoListFragment : Fragment(), RepositoryListener {
+class TodoListFragment : Fragment(), RepositoryListener, CoroutineScope {
+
+    private val job = Job()
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
 
     companion object {
         fun newInstance() = TodoListFragment()
@@ -58,15 +63,20 @@ class TodoListFragment : Fragment(), RepositoryListener {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        job.cancelChildren()
+    }
+
     override fun onUpdate() {
         setItems()
     }
 
     fun setItems() {
-        getRepository().getAllItems(object : DataCallback<List<Todo>> {
-            override fun onData(data: List<Todo>) {
-                adapter.setItems(data)
-            }
-        })
+        launch {
+            val items = getRepository().getAllItems()
+            adapter.setItems(items)
+        }
+
     }
 }

@@ -1,8 +1,6 @@
 package com.appnio.todo.db
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 
 class RoomRepository(private val database: TodoDatabase) :
@@ -17,21 +15,17 @@ class RoomRepository(private val database: TodoDatabase) :
         }
     }
 
-    override fun findItem(id: Int, callback: DataCallback<Todo?>) {
-        launch {
-            callback.onData(database.todoDao().findById(id))
+    override suspend fun findItem(id: Int): Todo? {
+        return withContext(Dispatchers.IO) {
+            database.todoDao().findById(id)
         }
     }
 
     override fun removeItem(id: Int) {
         launch {
-            findItem(id, object : DataCallback<Todo?> {
-                override fun onData(data: Todo?) {
-                    data?.let {
-                        removeItem(it)
-                    }
-                }
-            })
+            findItem(id)?.let {
+                removeItem(it)
+            }
         }
     }
 
@@ -42,9 +36,9 @@ class RoomRepository(private val database: TodoDatabase) :
         }
     }
 
-    override fun getAllItems(callback: DataCallback<List<Todo>>) {
-        launch {
-            callback.onData(database.todoDao().getAll())
+    override suspend fun getAllItems(): List<Todo> {
+        return withContext(Dispatchers.IO) {
+            database.todoDao().getAll()
         }
     }
 
